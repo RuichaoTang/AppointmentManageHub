@@ -17,5 +17,4 @@ const connectDb = async () => {
   }
 };
 
-// 导出 client 和连接函数
 export { client, connectDb };
