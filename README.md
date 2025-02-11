@@ -19,7 +19,7 @@ A minimalist web app for managing your personal schedule and allowing others to 
    ```
 2. Navigate to the project folder:
    ```bash
-   cd Personal-Appointment-Portal
+   cd AppointmentManageHub
    ```
 3. Install dependencies:
    ```bash
