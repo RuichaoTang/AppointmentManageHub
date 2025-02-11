@@ -1,0 +1,61 @@
+
+
+  .text-bg-dark  {
+  color: #fff ; 
+  background-color: RGBA(var(--bs-dark-rgb),var(--bs-bg-opacity,1));
+  }
+
+  /* .btn {
+    background-color:#4A90E2 ;
+  } */
+
+  .logo {
+    display: flex;
+    align-items: center;
+    font-size: 40px;
+    font-weight: bold;
+    color: #4A90E2;
+  }
+
+
+  .logo .text {
+    font-size: 40px;
+    color: #ffffff;
+  }
+
+  .logo .text span {
+    color: #4A90E2;
+  }
+
+  .card {
+    margin-bottom: 15px;
+}
+.calendar {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.hero {
+  background: url('https://source.unsplash.com/1600x900/?calendar,meeting') no-repeat center center;
+  background-size: cover;
+  color: #000000;
+  padding: 80px 0;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #000000;
+}
+.search-bar {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.lead {
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: #00000072;
+}
