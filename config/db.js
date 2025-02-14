@@ -17,4 +17,9 @@ const connectDb = async () => {
   }
 };
 
-export { client, connectDb };
+const closeDb = async () => {
+  await client.close();
+  console.log("Disconnected from MongoDB");
+};
+
+export { client, connectDb, closeDb };
