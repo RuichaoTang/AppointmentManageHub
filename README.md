@@ -18,6 +18,9 @@ The goal of this project is to develop a simple and efficient web application fo
 ## Design File
 - https://github.com/RuichaoTang/AppointmentManageHub/blob/cc52b54624c12798d4ee3292f1e8435383a5444a/Sources/Appointment%20Manage%20Hub%20Design%20Doc.pdf
 
+## Slides
+- https://docs.google.com/presentation/d/1sYg-cbXXQ-3T1PFzdgc3mv4pVTavL58JaUICLMIQb_4/edit?usp=sharing
+
 ## Technologies Used
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express
