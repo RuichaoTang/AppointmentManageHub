@@ -1,7 +1,10 @@
 # My Project2 Proposal - Appointment Management Hub
 
 ## Author
-- Ruichao Tang
+Ruichao Tang
+
+## Deployment
+- https://appointmentmanagehub.onrender.com
 
 ## Class Link
 - https://johnguerra.co/classes/webDevelopment_spring_2025/
