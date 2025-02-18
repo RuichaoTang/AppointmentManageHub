@@ -1,0 +1,12 @@
+.register-form {
+    max-width: 500px;
+    margin-top: 50px;
+  }
+  
+  .login-form {
+    max-width: 500px;
+    margin-top: 50px;
+  }
+  .btn-primary {
+    width: 100%;
+  }
