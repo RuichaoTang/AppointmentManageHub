@@ -35,10 +35,10 @@ export const registerUser = async (req, res) => {
     });
 
     res.cookie("token", token, {
-      httpOnly: true, // 防止 JavaScript 访问
-      secure: process.env.NODE_ENV === "production", // 仅在 HTTPS 下启用
-      sameSite: "Strict", // 预防 CSRF
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 天
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
     // return the token and user info
@@ -60,39 +60,32 @@ export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // 连接数据库
     const userCollection = client.db("data").collection("users");
 
-    // 确保 email 字段有索引（MongoDB 端）
     await userCollection.createIndex({ email: 1 });
 
-    // 查找用户
     const user = await userCollection.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ message: "Email does not exist" });
     }
 
-    // 验证密码
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return res.status(400).json({ message: "Invalid password" });
     }
 
-    // 生成 JWT 令牌（有效期 7 天）
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
       expiresIn: "7d",
     });
 
-    // 设置 Cookie（httpOnly, secure, sameSite）
     res.cookie("token", token, {
-      httpOnly: true, // 防止 JavaScript 访问
-      secure: process.env.NODE_ENV === "production", // 仅在 HTTPS 下启用
-      sameSite: "Strict", // 预防 CSRF
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 天
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "Strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // 发送登录成功的响应（不返回 token）
     res.status(200).json({
       message: "Login successful",
       user: { email: user.email, id: user._id },
@@ -105,7 +98,7 @@ export const loginUser = async (req, res) => {
 
 export const checkLogin = async (req, res) => {
   console.log("Checking login status...");
-  console.log(req.cookies);
+  // console.log(req.cookies);
   const token = req.cookies.token;
 
   if (!token) {
@@ -117,7 +110,7 @@ export const checkLogin = async (req, res) => {
 
     res.send({ loggedIn: true, user: decoded });
   } catch (err) {
-    res.clearCookie("token"); // 清除无效 token
+    res.clearCookie("token");
     res.send({ loggedIn: false });
   }
 };
@@ -136,10 +129,9 @@ export const searchUser = async (req, res) => {
   }
 
   try {
-    // 进行模糊查询
     const userCollection = client.db("data").collection("users");
     const users = await userCollection
-      .find({ name: { $regex: searchQuery, $options: "i" } }) // 不区分大小写搜索
+      .find({ name: { $regex: searchQuery, $options: "i" } })
       .toArray();
 
     res.json(users);
@@ -155,7 +147,6 @@ export const bookUser = async (req, res) => {
     console.log("userID:", userID);
     const userCollection = client.db("data").collection("users");
 
-    // 查询数据库
     const user = await userCollection.findOne({ _id: new ObjectId(userID) });
     console.log("user:", user);
 
