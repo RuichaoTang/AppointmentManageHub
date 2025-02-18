@@ -59,3 +59,19 @@
   font-weight: 300;
   color: #00000072;
 }
+
+.login-form {
+  max-width: 500px;
+  margin-top: 50px;
+}
+.btn-primary {
+  width: 100%;
+}
+
+.full-height {
+  min-height: 100vh;
+}
+.register-form {
+  max-width: 500px;
+  margin-top: 50px;
+}
