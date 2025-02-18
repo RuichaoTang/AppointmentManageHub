@@ -3,14 +3,17 @@
 ## Author
 Ruichao Tang
 
+## Brief Description
+A simple web app that allows users to manage personal appointments. Visitors can book appointments with registered users. And the registered user have the access to the page that tracks confirmed and unconfirmed appointments.
+
+## Project Objective
+The goal of this project is to develop a simple and efficient web application for managing personal appointments. The platform enables visitors to book appointments with registered users, who can then track both confirmed and unconfirmed bookings through a dedicated dashboard. The system ensures secure authentication using JWT and leverages a modern tech stack, including Node.js, Express, and MongoDB, to provide a seamless user experience.
+
 ## Deployment
 - https://appointmentmanagehub.onrender.com
 
 ## Class Link
 - https://johnguerra.co/classes/webDevelopment_spring_2025/
-
-## Brief Description
-A simple web app that allows users to manage personal appointments. Visitors can book appointments with registered users. And the registered user have the access to the page that tracks confirmed and unconfirmed appointments.
 
 ## Design File
 - https://github.com/RuichaoTang/AppointmentManageHub/blob/cc52b54624c12798d4ee3292f1e8435383a5444a/Sources/Appointment%20Manage%20Hub%20Design%20Doc.pdf
