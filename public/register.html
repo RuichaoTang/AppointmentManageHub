@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Register</title>
+    <meta
+      name="description"
+      content="Effortless Scheduling, Seamless Appointments"
+    />
+    <meta
+      name="keywords"
+      content="scheduling, appointments, booking, time management"
+    />
+    <meta name="author" content="Ruichao Tang" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -46,14 +56,30 @@
 
           <div class="text-end">
             <a
+              id="loginBtn"
               href="./login.html"
               role="button"
               class="btn btn-outline-light me-2"
             >
               Login
             </a>
-            <a href="./register.html" role="button" class="btn btn-warning"
+            <a
+              id="signupBtn"
+              href="./register.html"
+              role="button"
+              class="btn btn-warning"
               >Sign-up</a
+            >
+            <a
+              id="myBtn"
+              href="./manage.html"
+              role="button"
+              class="btn btn-outline-light me-2 d-none"
+            >
+              My Plans
+            </a>
+            <a id="logoutBtn" role="button" class="btn btn-warning d-none"
+              >Log-out</a
             >
           </div>
         </div>
@@ -80,43 +106,6 @@
       <div id="successMessage" class="mt-3 text-success d-none"></div>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-      document
-        .getElementById("registerForm")
-        .addEventListener("submit", async (event) => {
-          event.preventDefault();
-
-          const name = document.getElementById("name").value;
-          const email = document.getElementById("email").value;
-          const password = document.getElementById("password").value;
-          //   console.log(name, email, password);
-          const response = await fetch("/api/users/registerUser", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({ name, email, password }),
-          });
-
-          const result = await response.json();
-
-          const errorMessage = document.getElementById("errorMessage");
-          const successMessage = document.getElementById("successMessage");
-
-          if (response.ok) {
-            successMessage.textContent =
-              "Registration successful! You can now log in.";
-            successMessage.classList.remove("d-none");
-            errorMessage.classList.add("d-none");
-            window.location.href = "./";
-          } else {
-            errorMessage.textContent =
-              result.message || "Something went wrong!";
-            errorMessage.classList.remove("d-none");
-            successMessage.classList.add("d-none");
-          }
-        });
-    </script>
+    <script type="module" src="./scripts/register.js"></script>
   </body>
 </html>

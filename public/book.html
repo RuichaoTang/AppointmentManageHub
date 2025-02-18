@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Planify</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./stylesheets/style.css" />
+  </head>
+  <body>
+    <header class="p-3 text-bg-dark">
+      <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-start">
+          <a
+            href="/"
+            class="text-decoration-none nav col-auto me-auto mb-2 justify-content-center mb-md-0"
+          >
+            <div class="logo">
+              <div class="text">Plan<span>ify</span></div>
+            </div>
+          </a>
+
+          <form
+            class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-none d-lg-inline"
+            role="search"
+          >
+            <input
+              type="search"
+              class="text-bg-dark form-control form-control-dark d-none"
+              placeholder="Search..."
+              aria-label="Search"
+            />
+          </form>
+
+          <div class="text-end">
+            <a
+              id="loginBtn"
+              href="./login.html"
+              role="button"
+              class="btn btn-outline-light me-2"
+            >
+              Login
+            </a>
+            <a
+              id="signupBtn"
+              href="./register.html"
+              role="button"
+              class="btn btn-warning"
+              >Sign-up</a
+            >
+            <a
+              id="myBtn"
+              href="./manage.html"
+              role="button"
+              class="btn btn-outline-light me-2 d-none"
+            >
+              My Plans
+            </a>
+            <a id="logoutBtn" role="button" class="btn btn-warning d-none"
+              >Log-out</a
+            >
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class="container my-5">
+      <h2 class="text-center mb-4">Make an Appointment</h2>
+
+      <form id="appointmentForm">
+        <div class="card">
+          <div class="card-body">
+            <!-- name -->
+            <div class="mb-3">
+              <label for="name" class="form-label">Your Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                name="name"
+                required
+              />
+            </div>
+
+            <!-- email -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Your Email</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                required
+              />
+            </div>
+
+            <!-- date -->
+            <div class="mb-3">
+              <label for="date" class="form-label">Date</label>
+              <input
+                type="date"
+                class="form-control"
+                id="date"
+                name="date"
+                required
+              />
+            </div>
+
+            <!-- time -->
+            <div class="mb-3">
+              <label for="time" class="form-label">Time</label>
+              <input
+                type="time"
+                class="form-control"
+                id="time"
+                name="time"
+                required
+              />
+            </div>
+
+            <!-- description/notes -->
+            <div class="mb-3">
+              <label for="comments" class="form-label">Notes</label>
+              <textarea
+                class="form-control"
+                id="comments"
+                name="comments"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <!-- submit button -->
+            <button type="submit" class="btn btn-primary w-100">Submit</button>
+          </div>
+        </div>
+      </form>
+    </div>
+
+    <script type="module">
+      async function checkLoginState() {
+        const response = await fetch("/api/users/check-login", {
+          credentials: "include",
+        });
+
+        const data = await response.json();
+
+        if (data.loggedIn) {
+          document.getElementById("loginBtn").classList.add("d-none");
+          document.getElementById("signupBtn").classList.add("d-none");
+          document.getElementById("logoutBtn").classList.remove("d-none");
+          document.getElementById("myBtn").classList.remove("d-none");
+        } else {
+          document.getElementById("loginBtn").classList.remove("d-none");
+          document.getElementById("signupBtn").classList.remove("d-none");
+          document.getElementById("logoutBtn").classList.add("d-none");
+          document.getElementById("myBtn").classList.add("d-none");
+        }
+      }
+
+      document
+        .getElementById("logoutBtn")
+        .addEventListener("click", async function () {
+          const confirmLogout = confirm("Are you sure to log out？");
+
+          if (confirmLogout) {
+            await fetch("/api/users/logout", {
+              method: "POST",
+              credentials: "include",
+            });
+            checkLoginState();
+            window.location.href = "/";
+          }
+        });
+
+      async function checkUserAndInitForm() {
+        // 获取 URL 参数
+        const urlParams = new URLSearchParams(window.location.search);
+        const userID = urlParams.get("userId");
+
+        if (!userID) {
+          console.log(userID);
+          alert("Invalid request. Redirecting to home...");
+          window.location.href = "/";
+          return;
+        }
+
+        try {
+          // 向后端发送请求，检查用户是否存在
+          const response = await fetch(`/api/users/book/${userID}`);
+
+          const data = await response.json();
+          console.log(data);
+
+          if (!response.ok || !data.user) {
+            console.log("User not found. Redirecting to home...");
+            alert("User not found. Redirecting to home...");
+            window.location.href = "/";
+            return;
+          }
+
+          // 在页面上显示被预约者的名字
+          const appointmentTitle = document.querySelector("h2");
+          appointmentTitle.innerHTML = `Make an appointment with <strong>${data.user.fullName}</strong>`;
+        } catch (error) {
+          console.error("Error checking user:", error);
+          alert("An error occurred. Redirecting to home...");
+          window.location.href = "/";
+        }
+      }
+
+      document
+        .getElementById("appointmentForm")
+        .addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const urlParams = new URLSearchParams(window.location.search);
+          const userID = urlParams.get("userId");
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const date = document.getElementById("date").value;
+          const time = document.getElementById("time").value;
+          const comments = document.getElementById("comments").value;
+
+          const response = await fetch(`/api/appointments/make/${userID}`, {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name, email, date, time, comments }),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            alert("Appointment booked successfully!");
+            window.location.href = "/";
+          } else {
+            alert(result.message || "Something went wrong!");
+          }
+        });
+      // 页面加载时执行
+      document.addEventListener("DOMContentLoaded", checkUserAndInitForm);
+
+      checkLoginState();
+    </script>
+  </body>
+</html>

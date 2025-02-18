@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Planify</title>
+    <meta
+      name="description"
+      content="Effortless Scheduling, Seamless Appointments"
+    />
+    <meta
+      name="keywords"
+      content="scheduling, appointments, booking, time management"
+    />
+    <meta name="author" content="Ruichao Tang" />
+    <link rel="icon" href="./favicon.ico" sizes="48x48" />
     <!-- Bootstrap CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -32,10 +42,12 @@
           <form
             class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3 d-none d-lg-inline"
             role="search"
+            id="searchForm"
           >
             <input
               type="search"
               class="text-bg-dark form-control form-control-dark"
+              id="searchInputNav"
               placeholder="Search..."
               aria-label="Search"
             />
@@ -43,19 +55,36 @@
 
           <div class="text-end">
             <a
+              id="loginBtn"
               href="./login.html"
               role="button"
               class="btn btn-outline-light me-2"
             >
               Login
             </a>
-            <a href="./register.html" role="button" class="btn btn-warning"
+            <a
+              id="signupBtn"
+              href="./register.html"
+              role="button"
+              class="btn btn-warning"
               >Sign-up</a
+            >
+            <a
+              id="myBtn"
+              href="./manage.html"
+              role="button"
+              class="btn btn-outline-light me-2 d-none"
+            >
+              My Plans
+            </a>
+            <a id="logoutBtn" role="button" class="btn btn-warning d-none"
+              >Log-out</a
             >
           </div>
         </div>
       </div>
     </header>
+
     <!-- Hero Section -->
     <header class="hero">
       <div class="container text-center">
@@ -69,86 +98,21 @@
             <div class="input-group input-group-md">
               <input
                 type="text"
+                id="searchInput"
                 class="form-control"
                 placeholder="Search for someone to book..."
               />
-              <button class="btn btn-light">Search</button>
+              <button class="btn btn-light" id="searchBtn">Search</button>
             </div>
           </div>
+        </div>
+
+        <div class="mt-5">
+          <div class="row" id="searchResults"></div>
         </div>
       </div>
     </header>
 
-    <div class="container my-5">
-      <h2 class="text-center mb-4">Make an Appointment</h2>
-
-      <form action="/submit-appointment" method="POST">
-        <div class="card">
-          <div class="card-body">
-            <!-- name -->
-            <div class="mb-3">
-              <label for="name" class="form-label">Your Name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                name="name"
-                required
-              />
-            </div>
-
-            <!-- email -->
-            <div class="mb-3">
-              <label for="email" class="form-label">Your Email</label>
-              <input
-                type="email"
-                class="form-control"
-                id="email"
-                name="email"
-                required
-              />
-            </div>
-
-            <!-- date -->
-            <div class="mb-3">
-              <label for="date" class="form-label">Date</label>
-              <input
-                type="date"
-                class="form-control"
-                id="date"
-                name="date"
-                required
-              />
-            </div>
-
-            <!-- time -->
-            <div class="mb-3">
-              <label for="time" class="form-label">Time</label>
-              <input
-                type="time"
-                class="form-control"
-                id="time"
-                name="time"
-                required
-              />
-            </div>
-
-            <!-- description/notes -->
-            <div class="mb-3">
-              <label for="comments" class="form-label">Notes</label>
-              <textarea
-                class="form-control"
-                id="comments"
-                name="comments"
-                rows="3"
-              ></textarea>
-            </div>
-
-            <!-- submit button -->
-            <button type="submit" class="btn btn-primary w-100">Submit</button>
-          </div>
-        </div>
-      </form>
-    </div>
+    <script type="module" src="./scripts/index.js"></script>
   </body>
 </html>
