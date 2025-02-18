@@ -10,6 +10,7 @@ async function checkLoginState() {
   });
 
   const data = await response.json();
+  console.log(data);
 
   if (data.loggedIn) {
     document.getElementById("loginBtn").classList.add("d-none");
@@ -34,8 +35,10 @@ async function loadAppointments(userId) {
     method: "GET",
     credentials: "include",
   });
+  console.log(userId);
 
   allAppointments = await response.json();
+  console.log(allAppointments);
   filteredAppointments = allAppointments; // 初始显示所有预约
   renderAppointments();
 }
