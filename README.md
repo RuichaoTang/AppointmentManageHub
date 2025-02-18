@@ -1,16 +1,39 @@
 # My Project2 Proposal - Appointment Management Hub
 
-## Brief Description
-A minimalist web app for managing your personal schedule and allowing others to book appointments with you. You define your availability and personal commitments, share a public link, and guests reserve slots. Guests see only your free time, while you manage both your schedule and bookings in one place.
+## Author
+Ruichao Tang
 
-## Features
-- to be filled...
+## Brief Description
+A simple web app that allows users to manage personal appointments. Visitors can book appointments with registered users. And the registered user have the access to the page that tracks confirmed and unconfirmed appointments.
+
+## Project Objective
+The goal of this project is to develop a simple and efficient web application for managing personal appointments. The platform enables visitors to book appointments with registered users, who can then track both confirmed and unconfirmed bookings through a dedicated dashboard. The system ensures secure authentication using JWT and leverages a modern tech stack, including Node.js, Express, and MongoDB, to provide a seamless user experience.
+
+## Deployment
+- https://appointmentmanagehub.onrender.com
+
+## Class Link
+- https://johnguerra.co/classes/webDevelopment_spring_2025/
+
+## Design File
+- https://github.com/RuichaoTang/AppointmentManageHub/blob/cc52b54624c12798d4ee3292f1e8435383a5444a/Sources/Appointment%20Manage%20Hub%20Design%20Doc.pdf
+
+## Slides
+- https://docs.google.com/presentation/d/1sYg-cbXXQ-3T1PFzdgc3mv4pVTavL58JaUICLMIQb_4/edit?usp=sharing
+
+## Video Narrative
+- https://github.com/RuichaoTang/AppointmentManageHub/raw/refs/heads/main/Sources/video%20narrative.mp4
 
 ## Technologies Used
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express
 - Database: MongoDB
-- Authentication: JWT or OAuth
+- Authentication: JWT
+
+## Screenshot
+![Homepage](https://github.com/RuichaoTang/AppointmentManageHub/blob/main/Sources/home.png?raw=true)
+![Book](https://github.com/RuichaoTang/AppointmentManageHub/blob/main/Sources/book.png?raw=true)
+![Manage](https://github.com/RuichaoTang/AppointmentManageHub/blob/main/Sources/manage.png?raw=true)
 
 ## Setup Instructions
 1. Clone the repository:
@@ -29,9 +52,6 @@ A minimalist web app for managing your personal schedule and allowing others to 
    ```bash
    npm start
    ```
-
-## Usage
-- to be filled...
 
 ## License
 This project is licensed under the MIT License.
