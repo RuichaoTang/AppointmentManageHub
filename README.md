@@ -21,6 +21,9 @@ The goal of this project is to develop a simple and efficient web application fo
 ## Slides
 - https://docs.google.com/presentation/d/1sYg-cbXXQ-3T1PFzdgc3mv4pVTavL58JaUICLMIQb_4/edit?usp=sharing
 
+## Video Narrative
+- https://github.com/RuichaoTang/AppointmentManageHub/raw/refs/heads/main/Sources/video%20narrative.mp4
+
 ## Technologies Used
 - Frontend: HTML, CSS, JavaScript
 - Backend: Node.js, Express
